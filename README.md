@@ -58,3 +58,40 @@ End of the Game
 The game ends when one player has a majority population on all planets or a maximum number of turns is reached. If the maximum number of turns is reached, the player with the larger total population at that point wins the game.
 
 For more information about the game flow, see the “example.pdf” document posted on Github, which walks through an example round of the game.
+
+
+# Your Task
+
+Write a class that implements iStrategy. As you will see when you look at iStrategy, there is one required method that needs to be written. (Of course, we strongly recommend that you do not include all of your logic in one method, due to various reasons that we have discussed throughout the semester.) At each turn, the takeTurn method in your strategy class will be called with parameters that include a list of the planets in the system and a queue for you to add your moves to. You will use the information in the list of planets and other information that you get from interacting with the system to make intelligent decisions about what moves to add to the queue.
+
+We have provided you with a very simple strategy to give you an idea of how to interact with the game engine, add moves to the queue, and access information about the game space. There are many different possible strategies, so each person/team’s approach may look very different. However, we do want each of your strategies to satisfy a few basic specifications:
+
+You must use the move queue properly and add moves at some point throughout each game.
+Not counting the move queue described above, you must use at least three of the following abstract data types in reasonable ways to help in implementing your strategy: lists, queues, dictionaries (maps), stacks, or graphs. Feel free to use Java built-in data structures that implement these ADTs (e.g. for a dictionary, you can use the HashMap class). NOTE: we are not requiring you to implement your own data structures for these.
+Your strategy must attempt traversal of the graph in some form. What exact traversal you use or what data you use in deciding how to traverse the planet graph is flexible, but your strategy should involve some attempt to traverse the graph.
+
+# Running the Game:  
+This example assumes that you’re using IntelliJ as your Java IDE.
+
+On the libraries screen, uncheck the “strategies” folder. This can be done later if necessary via File -> Project Structure -> Libraries.
+To add a strategy of your own:
+Create a new java file in the folder project4/src/spaceexplorers/strategies.
+Use the provided example strategies as a reference.
+Note that you only need to edit the takeTurn method.
+To run the game WITH graphics:
+Open the file project4/src/spaceexplorers/publicapi/Driver.java.
+Edit the file to call your strategy instead of the provided strategies:
+E.g. GameWindow window = new GameWindow(Strategy.class, false);
+To create a .jar file for your strategy:
+For a strategy at project4/src/spaceexplorers/strategies/Strategy.java, create a .jar file for your strategy by going to File -> Project Structure -> Project Settings -> Artifacts -> Plus sign -> JAR -> from modules with dependencies and click ‘OK’.
+Name your strategy so that it matches your class name (i.e. RandomStrategy -> RandomStrategy.jar), and set its output folder to project4/strategies.
+Press ok, go to the menu Build -> Build Artifacts -> Build.
+Then, run the game by running the Driver.java class, which has a main method. Be sure to set your Working directory to the parent folder for the project (this contains the subfolders src, strategies, graphs, etc). Set your Working directory by going to Run -> Edit Configurations and then updating the “Working directory” field.
+To run the game WITHOUT graphics (this can be useful for testing your strategy):
+Open the file project4/src/spaceexplorers/core/SpaceExplorers.java.
+Edit the file to call your strategy instead of the provided strategies.
+For a strategy at project4/src/spaceexplorers/strategies/MyStrategy.java...
+Import your strategy with import spaceexplorers.strategies.MyStrategy.
+In the main method, change strategy1 to be an instance of MyStrategy:
+E.g. with IStrategy strategy1 = new MyStrategy();
+Then, run the game by running the SpaceExplorers.java class, which has a main method. Be sure to set your Working directory to the parent folder for the project (this contains the subfolders src, strategies, graphs, etc). Set your Working directory by going to Run -> Edit Configurations and then updating the “Working directory” field.
