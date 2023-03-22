@@ -31,10 +31,9 @@ Each player starts out with one planet with a given population. A player can sen
 
 Each player receives information about the entire game board, including the planet IDs of all planets and which planets are interconnected. However, a player can only see detailed information (population percentages, size, habitability, incoming shuttles) about the planets that their people have the majority on and their neighboring planets.
 
-Game Flow
-In one turn, a player
+**Game Flow:**  
 
-Receives information about the game state
+In one turn, a player receives information about the game state
 Adds moves to the event queue
 A ‘move’ is sending a shuttle from one planet to a neighboring planet. The player can set how many explorers are sent in the shuttle.
 A player can make as many moves as they want in a turn.
@@ -58,4 +57,4 @@ Player 1’s explorers are added to the population if the population cap has not
 End of the Game
 The game ends when one player has a majority population on all planets or a maximum number of turns is reached. If the maximum number of turns is reached, the player with the larger total population at that point wins the game.
 
-For more information about the game flow, see the “SpaceExplorers_ExampleRound.pdf” document we posted on Canvas along with this assignment, which walks through an example round of the game.
+For more information about the game flow, see the “example.pdf” document posted on Github, which walks through an example round of the game.
