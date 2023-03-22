@@ -1,22 +1,25 @@
-# SpaceExplorers
-**The Game**  
+#   <center> __SpaceExplorers__ </center>
+ 
 
-The Game
-Premise
+# The Game
+
+**Premise:**
+
 Space Explorers is a game where two players are pitted against each other in a system of interconnected planets. The players each start out on a home planet and the object of the game is to have the largest population by the end of the game.
 
-Game Board
-The game board is set up as a graph of planets interconnected by weighted edges.
+**Game Board:**
 
-Population growth occurs at a set rate on each planet.
+-The game board is set up as a graph of planets interconnected by weighted edges.
 
-If two planets are connected by an edge, then shuttles can be sent between these planets. The distance between the planets affects how many turns it takes for shuttles to move from one planet to the other.
+-Population growth occurs at a set rate on each planet.
 
-The planets vary by two factors:
+-If two planets are connected by an edge, then shuttles can be sent between these planets. The distance between the planets affects how many turns it takes for shuttles to move from one planet to the other.
 
-Size correlates to the total population the planet can support. Once a planet hits its maximum population, population growth will cease and any population that exceeds the maximum will decrease by the rate described below.
+-The planets vary by two factors:
 
-Habitability correlates to the population growth rate on a planet. Population change after one turn for a given planet is defined below.
+    -Size correlates to the total population the planet can support. Once a planet hits its maximum population, population growth will cease and any population that exceeds the maximum will decrease by the rate described below.
+
+    -Habitability correlates to the population growth rate on a planet. Population change after one turn for a given planet is defined below.
 
 Let c = current population, m = max population, g = growth rate, and p = overpopulation penalty.
 
