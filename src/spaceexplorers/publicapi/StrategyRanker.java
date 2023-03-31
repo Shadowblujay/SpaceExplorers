@@ -10,7 +10,8 @@ import java.util.*;
 public class StrategyRanker {
     public static final int NUM_TRIALS = 10;
 
-    public static void main(String[] args) throws IllegalAccessException, InstantiationException, FileNotFoundException {
+    public static void main(String[] args)
+            throws IllegalAccessException, InstantiationException, FileNotFoundException {
         // List of all strategies to compare
         List<IStrategyProvider> strategyProviders = new ArrayList<>();
         strategyProviders.add(new ClassStrategyProvider(NoOpStrategy.class));
@@ -20,7 +21,7 @@ public class StrategyRanker {
         strategyProviders.add(new JarStrategyProvider("AI3Strategy"));
         strategyProviders.add(new JarStrategyProvider("AI4Strategy"));
         strategyProviders.add(new JarStrategyProvider("AI5Strategy"));
-        strategyProviders.add(new ClassStrategyProvider(StudentStrategy.class));
+        strategyProviders.add(new ClassStrategyProvider(PlayerStrategy.class));
 
         List<String> graphs = new ArrayList<>();
         graphs.add("rings");
@@ -65,10 +66,12 @@ public class StrategyRanker {
                         IStrategy winner = spaceExplorers.runToCompletion(10000);
                         if (winner == strategy1) {
                             wins.put(strategyProvider1, wins.get(strategyProvider1) + 1);
-                            winsPerMap.get(strategyProvider1).put(graph, winsPerMap.get(strategyProvider1).get(graph) + 1);
+                            winsPerMap.get(strategyProvider1).put(graph,
+                                    winsPerMap.get(strategyProvider1).get(graph) + 1);
                         } else if (winner == strategy2) {
                             wins.put(strategyProvider2, wins.get(strategyProvider2) + 1);
-                            winsPerMap.get(strategyProvider2).put(graph, winsPerMap.get(strategyProvider2).get(graph) + 1);
+                            winsPerMap.get(strategyProvider2).put(graph,
+                                    winsPerMap.get(strategyProvider2).get(graph) + 1);
                         } else {
                             // No one won, neither player gets a point
                         }
@@ -87,12 +90,14 @@ public class StrategyRanker {
         });
 
         for (Map.Entry<IStrategyProvider, Integer> entry : winsPairs) {
-            System.out.println(String.format("Strategy: %s, Wins: %d", entry.getKey().newInstance().getName(), entry.getValue()));
+            System.out.println(
+                    String.format("Strategy: %s, Wins: %d", entry.getKey().newInstance().getName(), entry.getValue()));
         }
 
         System.out.println();
         System.out.println("Wins per Map");
-        List<Map.Entry<IStrategyProvider, Map<String, Integer>>> winsPerMapPairs = new ArrayList<>(winsPerMap.entrySet());
+        List<Map.Entry<IStrategyProvider, Map<String, Integer>>> winsPerMapPairs = new ArrayList<>(
+                winsPerMap.entrySet());
         for (Map.Entry<IStrategyProvider, Map<String, Integer>> entry : winsPerMapPairs) {
             List<Map.Entry<String, Integer>> winsPerMapInnerPairs = new ArrayList<>(entry.getValue().entrySet());
             winsPerMapInnerPairs.sort(new Comparator<Map.Entry<String, Integer>>() {
@@ -101,19 +106,22 @@ public class StrategyRanker {
                     return -1 * e1.getValue().compareTo(e2.getValue());
                 }
             });
-            System.out.println(String.format("Strategy: %s, Wins: %s", entry.getKey().newInstance().getName(), winsPerMapInnerPairs));
+            System.out.println(String.format("Strategy: %s, Wins: %s", entry.getKey().newInstance().getName(),
+                    winsPerMapInnerPairs));
         }
     }
 
     /**
-     * Interface for getting an instance of a strategy, without knowing where it came from.
+     * Interface for getting an instance of a strategy, without knowing where it
+     * came from.
      */
     private interface IStrategyProvider {
         IStrategy newInstance() throws IllegalAccessException, InstantiationException;
     }
 
     /**
-     * Class providing instances of a strategy which can be referred to directly, e.g. {@code MyStrategy.class}
+     * Class providing instances of a strategy which can be referred to directly,
+     * e.g. {@code MyStrategy.class}
      */
     private static class ClassStrategyProvider implements IStrategyProvider {
         private Class<? extends IStrategy> strategyClass;
@@ -129,7 +137,8 @@ public class StrategyRanker {
     }
 
     /**
-     * Class providing instances of a strategy which has been jarred up, e.g. {@code "AI1_obf"}
+     * Class providing instances of a strategy which has been jarred up, e.g.
+     * {@code "AI1_obf"}
      */
     private static class JarStrategyProvider implements IStrategyProvider {
         private String jar;
